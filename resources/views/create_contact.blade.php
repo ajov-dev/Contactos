@@ -21,13 +21,15 @@
                                 id="contact_email" placeholder="Email...">
                             <input class="form-control form-control-lg mb-2" type="text" name="contact_address"
                                 id="contact_address" placeholder="Direccion...">
-                            <select class="form-control form-control-lg mb-2"  name="contact_category" id="contact_category"
+                            <select class="form-control form-control-lg mb-2" name="contact_category" id="contact_category"
                                 onchange="mostrarCampoTexto(this)">
+                                <option>Elija una opcion.</option>
+                                <option value="-1">Otra opción.</option>
                                 @foreach ($categorias as $categoria)
                                     <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                                 @endforeach
-                                <option value="-1">Otra opción </option>
-                                <input id="input_category" style="display: none; " placeholder="Ingrese la nueva categoria" type="text" name="new_categoria" id="new_categoria">
+                                <input id="input_category" style="display: none; " placeholder="Ingrese la nueva categoria"
+                                    type="text" name="new_categoria" id="new_categoria">
                             </select>
                             <div class="pt-1 mb-4">
                                 <button class="btn btn-success btn-lg btn-block" type="submit">Agrega a la lista</button>
