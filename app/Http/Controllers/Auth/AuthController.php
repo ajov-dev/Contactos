@@ -9,52 +9,53 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
     public function signup(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            "name" => "required|string|max:255",
-            "email" => "required|string|email|max:255|unique:users",
-            "password" => "required|string|min:8",
-        ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+        try {
+            $validator = Validator::make($request->all(), [
+                "name" => "required|string|max:255",
+                "email" => "required|string|email|max:255|unique:users",
+                "password" => "required|string|min:8",
+            ]);
+            User::create([
+                "name" => $request->name,
+                "email" => $request->email,
+                "password" => Hash::make($request->password)
+            ]);
+            return to_route('dashboard');
+        } catch (\Exception $e) {
+            return redirect('signin_form');
         }
-        $user = User::create([
-            "name" => $request->name,
-            "email" => $request->email,
-            "password" => Hash::make($request->password)
-        ]);
-
-        $token = $user->createToken("auth_token")->plainTextToken;
-
-        return response()->json([
-            'user' => $user,
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-            'message' => 'User created successfully',
-        ], 201);
     }
     public function signin(Request $request)
     {
-        $credentials = Request()->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            Request()->session()->regenerate();
-            return redirect('dashboard');
+        $credentials = $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+
+        $remember = $request->filled('remember');
+
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->regenerate();
+            return to_route('dashboard')->with('status', 'You are successfully logged in!');
         }
-        return dump('failed');
+
+        throw ValidationException::withMessages([
+            'email' => __('auth.failed'),
+        ]);
     }
 
-    public function signout(Redirector $redirect, Request $request)
+    public function signout(Request $request)
     {
         Auth::guest();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-
-        return redirect('dashboard');
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return to_route('signin_form');
     }
 }
