@@ -6,67 +6,44 @@
                 <h1>Dashboard</h1>
             </div>
         </div>
-        <table class="table table-dark ">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Lorem</th>
-                    <th scope="col">Ipsum</th>
-                    <th scope="col">Dolor</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Sit</td>
-                    <td>Amet</td>
-                    <td>Consectetur</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Adipisicing</td>
-                    <td>Elit</td>
-                    <td>Sint</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Hic</td>
-                    <td>Fugiat</td>
-                    <td>Temporibus</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Hic</td>
-                    <td>Fugiat</td>
-                    <td>Temporibus</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Hic</td>
-                    <td>Fugiat</td>
-                    <td>Temporibus</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Hic</td>
-                    <td>Fugiat</td>
-                    <td>Temporibus</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Hic</td>
-                    <td>Fugiat</td>
-                    <td>Temporibus</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Hic</td>
-                    <td>Fugiat</td>
-                    <td>Temporibus</td>
-                </tr>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-dark ">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">nombre completo</th>
+                        <th scope="col">telefono</th>
+                        <th scope="col">correo</th>
+                        <th scope="col">grupo</th>
+                        <th scope="col">acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for ($i = 0; $i < 7; $i++)
+                        <tr>
+                            <th><i class="bi bi-people-fill"></i></th>
+                            <td>Name {{ $i }}</td>
+                            <td>6578367{{ $i }}</td>
+                            <td>mail{{ $i }}{{ '@' }}correo.com</td>
+                            <td>grupo{{ $i }}</td>
+                            {{-- inserta 2 botones editar, eliminar --}}
+                            <td>
+                                <div class="flex">
+                                    <a style="display: inline" href="#" class="btn btn-primary">Editar</a>
+                                    {{-- <a href="{{ route('contact.edit', $i) }}" class="btn btn-primary">Editar</a> --}}
+                                    {{-- <form action="{{ route('contact.destroy', $i) }}" method="POST"> --}}
+                                    <form style="display: inline" action="#" method="POST">
+                                        @csrf
+                                        <button type="button" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </div>
+                            </td>
 
-            </tbody>
+                        </tr>
+                    @endfor
+                </tbody>
 
-        </table>
+            </table>
+        </div>
     </div>
 @endsection
