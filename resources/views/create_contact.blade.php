@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('content')
-    <section class="vh-100">
+    <section class="mt-3 vh-80">
         <div class="container-fluid">
             <div class="row ">
                 <div class="col-sm-6 text-black m-auto">

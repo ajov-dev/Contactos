@@ -1,34 +1,38 @@
 @auth
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
-            <!-- Container wrapper -->
-            <div class="container">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark ">
+        <!-- Container wrapper -->
+        <div class="container">
 
-                <!-- Navbar brand -->
-                <div>
-                    <a class="navbar-brand" href="{{route ('dashboard')}}"> - {{ auth()->user()->name }}</a>
+            <!-- Navbar brand -->
+            <div style="display: inline">
+                <div style="display: inline">
+                    <i class="bi bi-person-circle"></i>
                 </div>
-
-                <!-- Collapsible wrapper -->
-                <div>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                        <!-- Link -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact.create.view') }}">crear contacto</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <form action="{{ route('signout') }}" method="post">
-                                @csrf
-                                <button class="btn btn-dark">cerrar sesion</button>
-                            </form>
-                        </li>
-
-                    </ul>
+                <div style="display: inline">
+                    <a class="navbar-brand" href="{{ route('dashboard') }}"> - ¡Hello {{ auth()->user()->name }}!</a>
                 </div>
             </div>
-            <!-- Container wrapper -->
-        </nav>
-        <!-- Navbar -->
-    @endauth
+
+            <!-- Collapsible wrapper -->
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Opciones
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ route('contact.create.view') }}">Crear usuario</a></li>
+                    {{-- <li><a class="dropdown-item" href="{{ route('contact.index') }}">Ver usuarios</a></li> --}}
+                    <li>
+                        <form action="{{ route('signout') }}" method="post">
+                            @csrf
+                            <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+@endauth
