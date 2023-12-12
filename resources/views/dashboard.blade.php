@@ -1,9 +1,14 @@
 @extends('base')
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1>Dashboard</h1>
+    <div class="container" style="margin:5vh auto;">
+        <div style="display: flex; flex-direction:row; justify-content:space-between; align-items: center;">
+            <div>
+                <h1 class="text-light">Dashboard</h1>
+            </div>
+
+            <div>
+                <a class="btn btn-outline-light btn-rounded" data-mdb-ripple-color="#001111"
+                    href="{{ route('contact.create.view') }}"> Crear Usuario </a>
             </div>
         </div>
         <div class="table-responsive">
@@ -11,11 +16,11 @@
                 <thead>
                     <tr>
                         <th scope="col"></th>
-                        <th scope="col">nombre completo</th>
-                        <th scope="col">telefono</th>
-                        <th scope="col">correo</th>
-                        <th scope="col">grupo</th>
-                        <th scope="col">acciones</th>
+                        <th scope="col">Nombre Completo</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Grupo</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,11 +34,12 @@
                             {{-- inserta 2 botones editar, eliminar --}}
                             <td>
                                 <div class="flex">
-                                    <a style="display: inline" href="{{ route('printer.get' , ['id' => $i,])}}"
+                                    <a style="display: inline" href="{{ route('printer.get', ['id' => $i]) }}"
                                         class="btn btn-primary">Editar</a>
                                     {{-- <a href="{{ route('contact.edit', $i) }}" class="btn btn-primary">Editar</a> --}}
                                     {{-- <form action="{{ route('contact.destroy', $i) }}" method="POST"> --}}
-                                    <form style="display: inline" action="{{ route('printer.get' , ['id' => $i,])}}" method="POST">
+                                    <form style="display: inline" action="{{ route('printer.get', ['id' => $i]) }}"
+                                        method="POST">
                                         @csrf
                                         <button type="submit" class="btn btn-danger">Eliminar</button>
                                     </form>

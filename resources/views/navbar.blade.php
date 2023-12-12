@@ -16,13 +16,12 @@
 
             <!-- Collapsible wrapper -->
             <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Opciones
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('contact.create.view') }}">Crear usuario</a></li>
-                    {{-- <li><a class="dropdown-item" href="{{ route('contact.index') }}">Ver usuarios</a></li> --}}
+                    <li><a class="dropdown-item" href="{{ route('contact.create.view') }}">Administrar Categorias</a></li>
+
                     <li>
                         <form action="{{ route('signout') }}" method="post">
                             @csrf
