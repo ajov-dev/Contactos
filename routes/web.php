@@ -20,19 +20,27 @@ use App\Http\Controllers\DashboardController;
 Route::group(['middleware' => ['auth:sanctum']], function () {
     route::post('printer', function () {
         return dump(request()->all());
-    })->name('printer');
+    })->name('printer.post');
 });
 
-Route::get('/', function () {
-    return redirect()->route('signin_form');
-})->name('home');
-Route::get('signin', [AuthFormController::class, 'signin_form'])->name('signin_form');
-Route::get('signup', [AuthFormController::class, 'signup_form'])->name('signup_form');
-Route::post('signin', [AuthController::class, 'signin'])->name('signin');
-Route::post('signup', [AuthController::class, 'signup'])->name('signup');
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    route::get('printer', function () {
+        return dump(request()->all());
+    })->name('printer.get');
+});
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/', function () {
+        return redirect()->route('signin_form');
+    })->name('home');
+    Route::get('signin', [AuthFormController::class, 'signin_form'])->name('signin_form');
+    Route::get('signup', [AuthFormController::class, 'signup_form'])->name('signup_form');
+    Route::post('signin', [AuthController::class, 'signin'])->name('signin');
+    Route::post('signup', [AuthController::class, 'signup'])->name('signup');
+});
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::POST('signout', [AuthController::class, 'signout'])->name('signout');
+    Route::post('signout', [AuthController::class, 'signout'])->name('signout');
 });
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('user/create/contact', [ContactoController::class, 'create_view'])->name('contact.create.view');

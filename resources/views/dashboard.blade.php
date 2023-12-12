@@ -29,12 +29,13 @@
                             {{-- inserta 2 botones editar, eliminar --}}
                             <td>
                                 <div class="flex">
-                                    <a style="display: inline" href="#" class="btn btn-primary">Editar</a>
+                                    <a style="display: inline" href="{{ route('printer.get' , ['id' => $i,])}}"
+                                        class="btn btn-primary">Editar</a>
                                     {{-- <a href="{{ route('contact.edit', $i) }}" class="btn btn-primary">Editar</a> --}}
                                     {{-- <form action="{{ route('contact.destroy', $i) }}" method="POST"> --}}
-                                    <form style="display: inline" action="#" method="POST">
+                                    <form style="display: inline" action="{{ route('printer.get' , ['id' => $i,])}}" method="POST">
                                         @csrf
-                                        <button type="button" class="btn btn-danger">Eliminar</button>
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
                                     </form>
                                 </div>
                             </td>

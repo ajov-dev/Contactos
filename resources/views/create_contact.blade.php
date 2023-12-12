@@ -8,28 +8,29 @@
 
                     <div class="d-flex align-items-center h-custom-2  ms-xl-4 pt-5 pt-xl-0 mt-xl-n5">
 
-                        <form action="{{ route('printer') }}" method="POST" class="card card-body" style="width: 23rem;">
+                        <form action="{{ route('printer.post') }}" method="POST" class="card card-body" style="width: 23rem;">
                             @csrf
                             <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Crear contacto</h3>
-                            <input class="form-control form-control-lg mb-2" type="text" name="contact_name"
+                            <input class="form-control form-control-lg mb-2" required type="text" name="contact_name"
                                 id="contact_name" placeholder="Nombre...">
-                            <input class="form-control form-control-lg mb-2" type="text" name="contact_lastname"
+                            <input class="form-control form-control-lg mb-2" required type="text" name="contact_lastname"
                                 id="contact_lastname" placeholder="Apellido...">
-                            <input class="form-control form-control-lg mb-2" type="text" name="contact_phone"
+                            <input class="form-control form-control-lg mb-2" required type="text" name="contact_phone"
                                 id="contact_phone" placeholder="Telefono...">
-                            <input class="form-control form-control-lg mb-2" type="email" name="contact_email"
+                            <input class="form-control form-control-lg mb-2" required type="email" name="contact_email"
                                 id="contact_email" placeholder="Email...">
-                            <input class="form-control form-control-lg mb-2" type="text" name="contact_address"
+                            <input class="form-control form-control-lg mb-2" required type="text" name="contact_address"
                                 id="contact_address" placeholder="Direccion...">
                             <select class="form-control form-control-lg mb-2"  name="contact_category" id="contact_category"
                                 onchange="mostrarCampoTexto(this)">
+                                <option value="" disabled selected>Seleccione una categoria</option>
                                 @foreach ($categorias as $categoria)
                                     <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                                 @endforeach
                                 <option value="-1">Otra opción </option>
-                                <input id="input_category" style="display: none; " placeholder="Ingrese la nueva categoria" type="text" name="new_categoria" id="new_categoria">
+                                <input class="form-control form-control-lg mb-2" id="input_category" style="display: none; " placeholder="Ingrese la nueva categoria" type="text" name="new_categoria" id="new_categoria">
                             </select>
-                            <div class="pt-1 mb-4">
+                            <div class="pt-1 mb-1">
                                 <button class="btn btn-success btn-lg btn-block" type="submit">Agrega a la lista</button>
                             </div>
                         </form>
