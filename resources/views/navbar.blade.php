@@ -10,7 +10,7 @@
                     <i class="bi bi-person-circle"></i>
                 </div>
                 <div style="display: inline">
-                    <a class="navbar-brand" href="{{ route('dashboard') }}"> - ¡Hello {{ auth()->user()->name }}!</a>
+                    <a class="navbar-brand" href="{{ route('contact.index.get') }}"> - ¡Hello {{ auth()->user()->name }}!</a>
                 </div>
             </div>
 
@@ -20,7 +20,7 @@
                     Opciones
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('contact.create.view') }}">Administrar Categorias</a></li>
+                    <li><a class="dropdown-item" href="{{ route('category.index.get') }}">Administrar Categorias</a></li>
 
                     <li>
                         <form action="{{ route('signout') }}" method="post">

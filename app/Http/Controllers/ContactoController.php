@@ -17,10 +17,16 @@ class ContactoController extends Controller
         $this->middleware('auth');
     }
 
-    public function create_view()
+    public function index_get()
     {
         $categorias = Categoria::where('user_id', Auth::user()->id)->get();
-        return view('create_contact', ['categorias' => $categorias]);
+        return view('contact_index', ['categorias' => $categorias]);
+    }
+
+    public function create_get()
+    {
+        $categorias = Categoria::where('user_id', Auth::user()->id)->get();
+        return view('contact_create', ['categorias' => $categorias]);
     }
 
     /**
