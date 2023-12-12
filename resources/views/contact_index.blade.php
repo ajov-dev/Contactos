@@ -1,13 +1,13 @@
 @extends('base')
 @section('content')
-    <div class="container" style="margin:5vh auto;">
+    <div class="container" style="margin:2vh auto;">
         <div style="display: flex; flex-direction:row; justify-content:space-between; align-items: center;">
             <div>
-                <h1 class="text-light">Dashboard</h1>
+                <h1 class="">Dashboard</h1>
             </div>
 
             <div>
-                <button class="btn btn-outline-light btn-rounded" data-bs-toggle="modal" data-bs-target="#modal_create"> Crear
+                <button class="btn btn-outline-dark btn-rounded" data-bs-toggle="modal" data-bs-target="#modal_create"> Crear
                     Usuario </button>
                 <!-- Modal -->
                 <div class="modal top fade" id="modal_create" tabindex="-1" aria-labelledby="modal_create" aria-hidden="true"

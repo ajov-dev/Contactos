@@ -1,13 +1,13 @@
 @auth
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-primary navbar-dark ">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
         <!-- Container wrapper -->
         <div class="container">
 
             <!-- Navbar brand -->
             <div style="display: inline">
                 <div style="display: inline">
-                    <i class="bi bi-person-circle"></i>
+                    <i class="bi bi-person-circle text-light"></i>
                 </div>
                 <div style="display: inline">
                     <a class="navbar-brand" href="{{ route('contact.index.get') }}"> - ¡Hello {{ auth()->user()->name }}!</a>

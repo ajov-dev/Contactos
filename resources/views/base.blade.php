@@ -12,13 +12,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 
-<body class="bg-dark ">
+<body class="bg-light ">
 
     @auth
-        <header>@include('navbar')</header>
+        @include('base_navbar')
     @endauth
-    <main>@yield('content')</main>
-
+    <main>
+        @yield('content')
+    </main>
+    @auth
+        @include('base_footer')
+    @endauth
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

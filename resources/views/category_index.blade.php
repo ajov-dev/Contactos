@@ -1,13 +1,13 @@
 @extends('base')
 @section('content')
-    <div class="container" style="margin:5vh auto;">
+    <div class="container" style="margin:2vh auto;">
         <div style="display: flex; flex-direction:row; justify-content:space-between; align-items: center;">
             <div>
-                <h1 class="text-light">Categorias</h1>
+                <h1 class="">Categorias</h1>
             </div>
 
             <div>
-                <a class="btn btn-outline-light btn-rounded" data-bs-toggle="modal" data-bs-target="#modal_create"
+                <a class="btn btn-outline-dark btn-rounded" data-bs-toggle="modal" data-bs-target="#modal_create"
                     href="{{ route('category.create.get') }}"> Crear Categoria </a>
 
                 <!-- Modal -->
