@@ -5,17 +5,19 @@
             <div>
                 <h1 class="">Categorias</h1>
             </div>
-
+            @error('error')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <div>
                 <a class="btn btn-outline-dark btn-rounded" data-bs-toggle="modal" data-bs-target="#modal_create"
                     href="{{ route('category.create.get') }}"> Crear Categoria </a>
 
                 <!-- Modal -->
-                <div class="modal top fade" id="modal_create" tabindex="-1" aria-labelledby="modal_create" aria-hidden="true"
-                    data-bs-backdrop="true" data-bs-keyboard="true">
+                <div class="modal top fade" id="modal_create" tabindex="-1" aria-labelledby="modal_create"
+                    aria-hidden="true" data-bs-backdrop="true" data-bs-keyboard="true">
                     <div class="modal-dialog modal-lg  modal-dialog-centered">
                         <div class="modal-content">
-                            <form action="{{ route('printer.post') }}" method="post">
+                            <form action="{{ route('category.create.post') }}" method="post">
                                 @csrf
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="modal_create">Crear Categoria</h5>
@@ -24,8 +26,8 @@
                                 </div>
                                 <div class="modal-body">
                                     <input type="text" name="nombre" id="nombre" placeholder="Nombre de la categoria"
-                                        class="form-control mt-3">
-                                    <input type="text" name="descripcion" id="descripcion" maxlength="10"
+                                        class="form-control mt-3" required maxlength="30">
+                                    <input type="text" name="descripcion" id="descripcion" maxlength="50"
                                         placeholder="Pequeña desprición." class="form-control mt-3">
                                 </div>
                                 <div class="modal-footer">
@@ -39,7 +41,7 @@
                 {{-- fin del modal --}}
             </div>
         </div>
-        <div class="table-responsive">
+        <div class="table">
             <table class="table table-striped table-hover table-dark ">
                 <thead>
                     <tr>
@@ -50,28 +52,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 0; $i < 7; $i++)
+                    @foreach ($categories as $category)
                         <tr>
-                            <th><i class="bi bi-people-fill"></i></th>
-                            <td>Category {{ $i }}</td>
-                            <td>dejskgs jsdkhg ksdhg{{ $i }}</td>
+                            <th>
+                                <div class="w-25 m-auto"><i class="bi bi-people-fill"></i></div>
+                            </th>
+                            <td>{{ $category->nombre }}</td>
+                            <td>{{ $category->descripcion }}</td>
                             {{-- inserta 2 botones editar, eliminar --}}
                             <td>
-                                <div class="flex">
-                                    <a style="display: inline" href="{{ route('printer.get', ['id' => $i]) }}"
-                                        class="btn btn-primary">Editar</a>
-                                    {{-- <a href="{{ route('contact.edit', $i) }}" class="btn btn-primary">Editar</a> --}}
-                                    {{-- <form action="{{ route('contact.destroy', $i) }}" method="POST"> --}}
-                                    <form style="display: inline" action="{{ route('printer.get', ['id' => $i]) }}"
-                                        method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                    </form>
+                                <div class="d-flex row">
+                                    <div class="col-4">
+                                        <a href="{{ route('printer.get', ['id' => $category->id]) }}"
+                                            class="btn btn-primary">Editar</a>
+                                    </div>
+                                    <div class="col-8">
+                                        <form action="{{ route('printer.get', ['id' => $category->id]) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </td>
 
                         </tr>
-                    @endfor
+                    @endforeach
                 </tbody>
 
             </table>
@@ -79,6 +84,4 @@
     </div>
 
     <!-- Asegúrate de incluir jQuery en tu proyecto antes de esto -->
-
-
 @endsection
