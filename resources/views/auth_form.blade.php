@@ -4,7 +4,7 @@
 	<section class="vh-100">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-6 text-black">
+				<div class="col-sm-6">
 					<div class="px-5 ms-xl-4">
 						<i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
 					</div>

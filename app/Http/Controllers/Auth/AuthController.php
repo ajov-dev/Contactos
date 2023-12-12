@@ -26,7 +26,7 @@ class AuthController extends Controller
                 "email" => $request->email,
                 "password" => Hash::make($request->password)
             ]);
-            return to_route('dashboard');
+            return to_route('contact.index.get');
         } catch (\Exception $e) {
             return redirect('signin_form');
         }
@@ -43,7 +43,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return to_route('dashboard')->with('status', 'You are successfully logged in!');
+            return to_route('contact.index.get')->with('status', 'You are successfully logged in!');
         }
 
         throw ValidationException::withMessages([

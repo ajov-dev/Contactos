@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\AuthFormController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CategoriaController;
 
 
 /*
@@ -20,23 +21,46 @@ use App\Http\Controllers\DashboardController;
 Route::group(['middleware' => ['auth:sanctum']], function () {
     route::post('printer', function () {
         return dump(request()->all());
-    })->name('printer');
+    })->name('printer.post');
 });
 
-Route::get('/', function () {
-    return redirect()->route('signin_form');
-})->name('home');
-Route::get('signin', [AuthFormController::class, 'signin_form'])->name('signin_form');
-Route::get('signup', [AuthFormController::class, 'signup_form'])->name('signup_form');
-Route::post('signin', [AuthController::class, 'signin'])->name('signin');
-Route::post('signup', [AuthController::class, 'signup'])->name('signup');
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    route::get('printer', function () {
+        return dump(request()->all());
+    })->name('printer.get');
+});
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/', function () {
+        return redirect()->route('signin_form');
+    })->name('home');
+    Route::get('signin', [AuthFormController::class, 'signin_form'])->name('signin_form');
+    Route::get('signup', [AuthFormController::class, 'signup_form'])->name('signup_form');
+    Route::post('signin', [AuthController::class, 'signin'])->name('signin');
+    Route::post('signup', [AuthController::class, 'signup'])->name('signup');
+});
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::POST('signout', [AuthController::class, 'signout'])->name('signout');
+    Route::post('signout', [AuthController::class, 'signout'])->name('signout');
 });
+
+// contact routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('user/create/contact', [ContactoController::class, 'create_view'])->name('contact.create.view');
+    Route::get('user/contact/dashboard', [ContactoController::class, 'index_get'])->name('contact.index.get');
+    Route::get('user/contact/create', [ContactoController::class, 'create_get'])->name('contact.create.get');
+    // Route::get('user/contact/update', [ContactoController::class, 'update_get'])->name('contact.update.get');
+    // // post methods
+    // Route::post('user/contact/create', [ContactoController::class, 'create_post'])->name('contact.create.post');
+    // Route::post('user/contact/update', [ContactoController::class, 'update_post'])->name('contact.update.post');
+    // Route::post('user/contact/destroy', [ContactoController::class, 'destroy_post'])->name('contact.destroy.post');
 });
+// category routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('user/category', [CategoriaController::class, 'index_get'])->name('category.index.get');
+    Route::get('user/category/create', [CategoriaController::class, 'create_get'])->name('category.create.get');
+    // Route::get('user/category/update', [CategoriaController::class, 'update_get'])->name('category.update.get');
+    // // post methods
+    // Route::post('user/category/create', [CategoriaController::class, 'create_post'])->name('category.create.post');
+    // Route::post('user/category/update', [CategoriaController::class, 'update_post'])->name('category.update.post');
+    // Route::post('user/category/destroy', [CategoriaController::class, 'destroy_post'])->name('category.destroy.post');
 });

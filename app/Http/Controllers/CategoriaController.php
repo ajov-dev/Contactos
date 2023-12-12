@@ -14,10 +14,16 @@ class CategoriaController extends Controller
     }
 
 
-    public function view(Request $request){
+    public function index_get(Request $request){
         $user = auth()->user();
         $categorias = Categoria::where('user_id', $user->id)->get();
-        return view('categorias', compact('categorias'));
+        return view('category_index', compact('categorias'));
+    }
+
+    public function create_get(Request $request){
+        $user = auth()->user();
+        $categorias = Categoria::where('user_id', $user->id)->get();
+        return view('category_create', compact('categorias'));
     }
     /**
      * Display a listing of the resource.
@@ -30,7 +36,7 @@ class CategoriaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create_post()
     {
         $user = auth()->user();
         request()->validate([
