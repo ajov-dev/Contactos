@@ -47,19 +47,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 // contact routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('user/contact/dashboard', [ContactoController::class, 'index_get'])->name('contact.index.get');
-    Route::get('user/contact/create', [ContactoController::class, 'create_get'])->name('contact.create.get');
-    // Route::get('user/contact/update', [ContactoController::class, 'update_get'])->name('contact.update.get');
-    // // post methods
-    // Route::post('user/contact/create', [ContactoController::class, 'create_post'])->name('contact.create.post');
-    // Route::post('user/contact/update', [ContactoController::class, 'update_post'])->name('contact.update.post');
-    // Route::post('user/contact/destroy', [ContactoController::class, 'destroy_post'])->name('contact.destroy.post');
+    Route::post('user/contact/create', [ContactoController::class, 'create_post'])->name('contact.create.post');
+    Route::post('user/contact/update', [ContactoController::class, 'update_post'])->name('contact.update.post');
+    Route::post('user/contact/destroy', [ContactoController::class, 'destroy_post'])->name('contact.destroy.post');
 });
 // category routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('user/category', [CategoriaController::class, 'index_get'])->name('category.index.get');
-    Route::get('user/category/create', [CategoriaController::class, 'create_get'])->name('category.create.get');
-    // Route::get('user/category/update', [CategoriaController::class, 'update_get'])->name('category.update.get');
-    // // post methods
     Route::post('user/category/create', [CategoriaController::class, 'create_post'])->name('category.create.post');
     Route::post('user/category/update', [CategoriaController::class, 'update_post'])->name('category.update.post');
     Route::post('user/category/destroy', [CategoriaController::class, 'destroy_post'])->name('category.destroy.post');

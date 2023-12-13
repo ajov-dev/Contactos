@@ -16,7 +16,9 @@
 
     @auth
         @include('base_navbar')
+        @include('base_errors')
     @endauth
+
     <main>
         @yield('content')
     </main>
