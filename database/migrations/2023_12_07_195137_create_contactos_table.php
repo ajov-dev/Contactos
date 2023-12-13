@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('contactos', function (Blueprint $table) {
             // primary key
-            $table->id('id_contacto');
+            $table->id();
             $table->foreignId('user_id')
                 ->constrained()
                 ->onDelete('cascade')
@@ -23,11 +23,16 @@ return new class extends Migration {
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             // campos de la tabla
-            $table->string('nombre');
-            $table->string('apellido');
-            $table->string('telefono');
-            $table->string('email');
-            $table->text('direccion');
+            $table->string('nombre')
+                ->nullable();
+            $table->string('apellido')
+                ->nullable();
+            $table->string('telefono')
+                ->nullable();
+            $table->string('email')
+                ->nullable();
+            $table->text('direccion')
+                ->nullable();
             $table->timestamps();
         });
     }
