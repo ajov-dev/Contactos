@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="bg-dark text-center fixed-bottom">
+<footer class="bg-dark text-center">
     <!-- Grid container -->
     <div class="container p-4 ">
       <!-- Section: Text -->
@@ -16,7 +16,7 @@
     <!-- Grid container -->
 
     <!-- Copyright -->
-    <div class="text-center p-3 bg-light">
+    <div class="text-center text-light p-3">
       © 2020 Copyright:
       <a href="https://mdbootstrap.com/">MDBootstrap.com</a>
     </div>

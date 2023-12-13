@@ -16,7 +16,7 @@
 
             <!-- Collapsible wrapper -->
             <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-outline-light btn-rounded dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Opciones
                 </button>
                 <ul class="dropdown-menu">

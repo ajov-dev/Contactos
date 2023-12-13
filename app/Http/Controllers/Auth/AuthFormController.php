@@ -11,6 +11,7 @@ class AuthFormController extends Controller
     public function signup_form(Request $request)
     {
         return view('auth_form', [
+            'name' => 'signup',
             'title' => 'Sign Up',
             'id_form' => 'signup_form',
             'action' => 'signup',
@@ -23,6 +24,7 @@ class AuthFormController extends Controller
     public function signin_form(Request $request)
     {
         return view('auth_form', [
+            'name'=> 'signin',
             'title' => 'Sign In',
             'id_form' => 'signin_form',
             'action' => 'signin',

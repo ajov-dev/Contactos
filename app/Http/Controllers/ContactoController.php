@@ -11,77 +11,27 @@ use Illuminate\Support\Facades\Auth;
 
 class ContactoController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index_get()
     {
         $categorias = Categoria::where('user_id', Auth::user()->id)->get();
-        return view('contact_index', ['categorias' => $categorias]);
+        return view('contact_index', ['name' => 'categories', 'categorias' => $categorias]);
     }
 
-    public function create_get()
+    public function create_get(Request $request)
     {
-        $categorias = Categoria::where('user_id', Auth::user()->id)->get();
-        return view('contact_create', ['categorias' => $categorias]);
-    }
+        try {
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+            $categorias = new Categoria();
+            $categorias->user_id = Auth::user()->id;
+            $categorias->nombre = $request->nombre;
+            $categorias->descripcion = $request->descripcion;
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+            $categorias->save();
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->with('error', $th->getMessage());
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Contacto $contacto)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Contacto $contacto)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Contacto $contacto)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Contacto $contacto)
-    {
-        //
+        return to_route('category.index.get');
     }
 }

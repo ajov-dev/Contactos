@@ -1,6 +1,6 @@
 @extends('base')
 @section('content')
-    <div class="container" style="margin:2vh auto;">
+    <div class="container" style="margin:;">
         <div style="display: flex; flex-direction:row; justify-content:space-between; align-items: center;">
             <div>
                 <h1 class="">Dashboard</h1>
@@ -69,30 +69,53 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 0; $i < 7; $i++)
-                        <tr>
-                            <th><i class="bi bi-people-fill"></i></th>
-                            <td>Name {{ $i }}</td>
-                            <td>6578367{{ $i }}</td>
-                            <td>mail{{ $i }}{{ '@' }}correo.com</td>
-                            <td>grupo{{ $i }}</td>
-                            {{-- inserta 2 botones editar, eliminar --}}
-                            <td>
-                                <div class="flex">
-                                    <a style="display: inline" href="{{ route('printer.get', ['id' => $i]) }}"
-                                        class="btn btn-primary">Editar</a>
-                                    {{-- <a href="{{ route('contact.edit', $i) }}" class="btn btn-primary">Editar</a> --}}
-                                    {{-- <form action="{{ route('contact.destroy', $i) }}" method="POST"> --}}
-                                    <form style="display: inline" action="{{ route('printer.get', ['id' => $i]) }}"
-                                        method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                    </form>
-                                </div>
-                            </td>
 
-                        </tr>
-                    @endfor
+                    {{-- valida de la variable $contacts existe --}}
+                    @if (isset($contacts))
+                        @foreach ($contacts as $contact)
+                            <tr>
+                                <th><i class="bi bi-people-fill m-auto"></i></th>
+                                <td>{{ $contact->nombre }} {{ $contact->apellido }}</td>
+                                <td>{{ $contact->telefono }}</td>
+                                <td>{{ $contact->email }}</td>
+                                <td>{{ $contact->direccion }}</td>
+                                <td>{{ $contact->categoria->nombre }}</td>
+                                <td>
+                                    <div class="flex">
+                                        <a style="display: inline" href="{{ route('printer.get', ['id' => $contact->id]) }}"
+                                            class="btn btn-primary">Editar</a>
+                                        <form style="display: inline"
+                                            action="{{ route('printer.get', ['id' => $contact->id]) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        @for ($id = 0; $id < 8; $id++)
+                            <tr>
+                                <th><i class="bi bi-people-fill"></i></th>
+                                <td>no existen datos</td>
+                                <td>no existen datos</td>
+                                <td>no existen datos</td>
+                                <td>no existen datos</td>
+                                <td>
+                                    <div class="flex">
+                                        <a style="display: inline"
+                                            href="{{ route('printer.get', ['id' => $id]) }}"
+                                            class="btn btn-primary">Editar</a>
+                                        <form style="display: inline"
+                                            action="{{ route('printer.get', ['id' => $id]) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endfor
+                    @endif
                 </tbody>
 
             </table>
