@@ -21,15 +21,15 @@
                     <input class="form-control form-control-lg mb-2" required type="text" name="contact_address"
                         id="contact_address" placeholder="Direccion...">
                     <select class="form-control form-control-lg mb-2" name="contact_category" id="contact_category"
-                        onchange="mostrarCampoTexto(this)">
-                        <option value="" disabled selected>Seleccione una categoria</option>
+                        onchange="CreateInputCategory(this)">
+                        <option disabled selected>Elija una Opcion.</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->nombre }}</option>
                         @endforeach
                         <option value="-1">Otra opción </option>
-                        <input class="form-control form-control-lg mb-2" id="input_category" style="display: none; "
-                            placeholder="Ingrese la nueva categoria" type="text" name="new_categoria"
-                            id="new_categoria">
+                        <input class="form-control form-control-lg mb-2" id="contacto_category_create"
+                            style="display: none; " placeholder="Ingrese la nueva categoria" type="text"
+                            name="contacto_category_create">
                     </select>
                 </div>
                 <div class="modal-footer">
@@ -40,3 +40,17 @@
         </div>
     </div>
 </div>
+<script>
+    function CreateInputCategory(selectElement) {
+        var input_category = document.getElementById('contacto_category_create');
+        var campoTextoInput = document.getElementById('campoTexto');
+
+        if (selectElement.value == -1) {
+            input_category.style.display = 'flex';
+            campoTextoInput.setAttribute('required', 'required');
+        } else {
+            input_category.style.display = 'none';
+            campoTextoInput.removeAttribute('required');
+        }
+    }
+</script>

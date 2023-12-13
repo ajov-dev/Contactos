@@ -38,7 +38,7 @@
                             <td>{{ $contact->email }}</td>
                             <td>{{ $contact->direccion }}</td>
                             <td>
-                                <div style="display: flex; flex-direction:row">
+                                <div style="display: flex; flex-direction:row; justify-content: start; gap: 2rem">
                                     <div style="display: inline">
                                         <button class="btn btn-outline-primary btn-rounded" data-bs-toggle="modal"
                                             data-bs-target="#modal_update_{{ $contact->id }}"> Editar </button>
@@ -60,19 +60,4 @@
             </table>
         </div>
     </div>
-
-    <script>
-        function mostrarCampoTexto(selectElement) {
-            var input_category = document.getElementById('input_category');
-            var campoTextoInput = document.getElementById('campoTexto');
-
-            if (selectElement.value == -1) {
-                input_category.style.display = 'flex';
-                campoTextoInput.setAttribute('required', 'required');
-            } else {
-                input_category.style.display = 'none';
-                campoTextoInput.removeAttribute('required');
-            }
-        }
-    </script>
 @endsection

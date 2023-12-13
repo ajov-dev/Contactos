@@ -31,13 +31,13 @@ class ContactoController extends Controller
             $contacto->email = $request->contact_email;
             $contacto->direccion = $request->contact_address;
 
-            if($request->contact_category == -1 && $request->contact_category_input != ''){
+            if ($request->contact_category == -1 && $request->contact_category_input != '') {
                 $categoria = new Categoria();
                 $categoria->user_id = Auth()->user()->id;
                 $categoria->nombre = $request->contact_category_name;
                 $categoria->save();
                 $contacto->categoria_id = $categoria->id;
-            }else{
+            } else {
                 $contacto->categoria_id = $request->contact_category;
             }
 
@@ -56,36 +56,47 @@ class ContactoController extends Controller
 
     public function update_post(Request $request)
     {
+
+        // return dump($request->all());
         try {
+            $contacto = Contacto::find($request->user_id);
+            $contacto->nombre = $request->contact_name;
+            $contacto->apellido = $request->contact_lastname;
+            $contacto->telefono = $request->contact_phone;
+            $contacto->email = $request->contact_email;
+            $contacto->direccion = $request->contact_address;
 
-            $contacto = Contacto::find($request->id);
-            $contacto->user_id = Auth::user()->id;
-            $contacto->nombre = $request->nombre;
-            $contacto->apellido = $request->apellido;
-            $contacto->telefono = $request->telefono;
-            $contacto->email = $request->email;
-            $contacto->categoria_id = $request->categoria_id;
-
+            if ($request->contact_category == -1 && $request->contacto_category_update != '') {
+                $category = Categoria::create([
+                    'user_id' => Auth()->user()->id,
+                    'nombre' => $request->contacto_category_update,
+                ]);
+                $contacto->categoria_id = $category->id;
+            } else {
+                $contacto->categoria_id = $request->contact_category;
+            }
             $contacto->save();
+            return redirect()->back()->with('success','Contacto actualizado correctamente');
         } catch (\Throwable $th) {
             //throw $th;
-            return redirect()->back()->with('error', $th->getMessage());
+            return dump('error', $th->getMessage());
         }
 
-        return to_route('contact.index.get');
+
     }
 
     public function destroy_post(Request $request)
     {
         try {
 
-            $contacto = Contacto::find($request->id);
+            $contacto = Contacto::find($request->user_id);
             $contacto->delete();
+            return to_route('contact.index.get')->with('success', 'Contacto eliminado correctamente');
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->back()->with('error', $th->getMessage());
         }
 
-        return to_route('contact.index.get');
+
     }
 }
