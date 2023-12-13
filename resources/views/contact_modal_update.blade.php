@@ -6,7 +6,8 @@
                 @csrf
                 <div class="modal-header">
                     <h4 class="modal-title text-dark" id="modal_update_{{ $contact->id }}">Actualizar Contacto</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="location.reload(true)"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        onclick="location.reload(true)"></button>
                 </div>
                 <div class="modal-body">
                     <div class="modal-body">
@@ -23,10 +24,12 @@
                             id="contact_address" placeholder="Direccion..." value="{{ $contact->direccion }}">
                         <select class="form-control form-control-lg mb-2" name="contact_category" id="contact_category"
                             onclick="UpdateInputCategory(this)">
-                            <option value="{{ $contact->categoria_id }}" disabled selected>{{ $contact->categoria_id }}
-                            </option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->nombre }}</option>
+                                @if ($category->id == $contact->categoria->id)
+                                    <option value="{{ $category->id }}" selected>{{ $category->nombre }}</option>
+                                @else
+                                    <option value="{{ $category->id }}">{{ $category->nombre }}</option>
+                                @endif
                             @endforeach
                             <option value="-1">Otra opción </option>
                             <input class="form-control form-control-lg mb-2" id="contacto_category_update"
@@ -35,8 +38,8 @@
                         </select>
                     </div>
                     <div class="modal-footer">
-                        <a type="button" class="btn btn-outline-secondary btn-rounded"
-                            data-bs-dismiss="modal" onclick="location.reload(true)">Cerrar</a>
+                        <a type="button" class="btn btn-outline-secondary btn-rounded" data-bs-dismiss="modal"
+                            onclick="location.reload(true)">Cerrar</a>
                         <button type="submit" class="btn btn-outline-success btn-rounded">Actualizar</button>
                     </div>
             </form>

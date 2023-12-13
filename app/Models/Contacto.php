@@ -19,13 +19,11 @@ class Contacto extends Model
     ];
     use HasFactory;
 
-    public function user()
-    {
+    public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function categoria()
-    {
-        return $this->hasOne(Categoria::class, 'categoria_id');
+    public function categoria() {
+        return $this->hasOne(Categoria::class, 'id', 'categoria_id');
     }
 }

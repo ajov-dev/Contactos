@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\AuthFormController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoriaController;
+use App\Models\Contacto;
 
 
 /*
@@ -18,6 +19,7 @@ use App\Http\Controllers\CategoriaController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
     route::post('printer', function () {
         return dump(request()->all());
