@@ -20,17 +20,17 @@
                         id="contact_email" placeholder="Email...">
                     <input class="form-control form-control-lg mb-2" required type="text" name="contact_address"
                         id="contact_address" placeholder="Direccion...">
-                    <select class="form-control form-control-lg mb-2" name="contact_category" id="contact_category"
-                        onchange="CreateInputCategory(this)">
-                        <option disabled selected>Elija una Opcion.</option>
-                        @foreach ($categories as $category)
+                        <select class="form-control form-control-lg mb-2" name="contact_category" id="contact_category"
+                            onclick="CreateInputCategory(this)">
+                            <option value="">Seleccione una categoria</option>
+                            @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->nombre }}</option>
-                        @endforeach
-                        <option value="-1">Otra opción </option>
-                        <input class="form-control form-control-lg mb-2" id="contacto_category_create"
-                            style="display: none; " placeholder="Ingrese la nueva categoria" type="text"
-                            name="contacto_category_create">
-                    </select>
+                            @endforeach
+                            <option value="-1">Otra opción </option>
+                            <input class="form-control form-control-lg mb-2" id="contacto_category_create"
+                                style="display: none; " placeholder="Ingrese la nueva categoria" type="text"
+                                name="contacto_category_create">
+                        </select>
                 </div>
                 <div class="modal-footer">
                     <a type="button" class="btn btn-outline-secondary btn-rounded" data-bs-dismiss="modal">Cancelar</a>

@@ -18,4 +18,14 @@ class Contacto extends Model
         'direccion',
     ];
     use HasFactory;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function categoria()
+    {
+        return $this->hasOne(Categoria::class, 'categoria_id');
+    }
 }

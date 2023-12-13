@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->foreignId('categoria_id')
                 ->nullable()
                 ->constrained()
-                ->onDelete('cascade')
+                ->onDelete('set null')
                 ->onUpdate('cascade');
             // campos de la tabla
             $table->string('nombre')
