@@ -14,21 +14,25 @@
 						@csrf
 						<input class="form-control form-control-lg mb-2" required type="text" name="contact_name"
 							id="contact_name" placeholder="Nombre..." value="{{ ucfirst($contact->nombre) }}">
-						<input class="form-control form-control-lg mb-2" required type="text" name="contact_lastname"
+						<input class="form-control form-control-lg mb-2" type="text" name="contact_lastname"
 							id="contact_lastname" placeholder="Apellido..." value="{{ ucfirst($contact->apellido) }}">
 						<input class="form-control form-control-lg mb-2" required type="text" name="contact_phone"
 							id="contact_phone" placeholder="Telefono..." value="{{ ucfirst($contact->telefono) }}">
 						<input class="form-control form-control-lg mb-2" required type="email" name="contact_email"
 							id="contact_email" placeholder="Email..." value="{{ ucfirst($contact->email) }}">
-						<input class="form-control form-control-lg mb-2" required type="text" name="contact_address"
+						<input class="form-control form-control-lg mb-2" type="text" name="contact_address"
 							id="contact_address" placeholder="Direccion..." value="{{ ucfirst($contact->direccion) }}">
 						<select class="form-control form-control-lg mb-2" name="contact_category" id="contact_category"
 							onclick="UpdateInputCategory(this)">
-							<option value="">Seleccione una categoria</option>
+							<option value="{{ $contact->categoria->id }}" selected>
+								{{ ucfirst($contact->categoria->nombre) }}
+							</option>
 							@foreach ($categories as $category)
-								<option value="{{ $category->id }}"
-									{{ $contact->category_id == $category->id ? 'selected' : '' }}>
-									{{ ucfirst($category->nombre) }}</option>
+								@if ($category->id != $contact->categoria->id)
+									<option value="{{ $category->id }}">
+										{{ ucfirst($category->nombre) }}
+									</option>
+								@endif
 							@endforeach
 							<option value="-1">Otra opción </option>
 							<input class="form-control form-control-lg mb-2" id="contacto_category_update"

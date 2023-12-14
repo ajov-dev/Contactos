@@ -5,7 +5,6 @@
 			<div>
 				<h1 class="">Dashboard</h1>
 			</div>
-
 			<div>
 				<button class="btn btn-outline-dark btn-rounded" data-bs-toggle="modal" data-bs-target="#modal_create"> Crear
 					Usuario </button>
@@ -31,14 +30,17 @@
 					{{-- verifica si existe la variable contacts --}}
 					@foreach ($contacts as $contact)
 						<tr>
-							<th><i class="bi bi-people-fill m-auto"></i></th>
-                            <td>{{isset($contact->categoria->nombre) ? ucfirst($contact->categoria->nombre) : "Sin Categoria"}}</td>
-							<td>{{ ucfirst($contact->nombre ) }} {{ucfirst($contact->apellido)}}</td>
+							<th>
+								<div style="display: flex; flex-direction: column"><i class="bi bi-people-fill" style="margin: 0 auto;"></i>
+								</div>
+							</th>
+							<td>{{ isset($contact->categoria->nombre) ? ucfirst($contact->categoria->nombre) : 'Sin Categoria' }}</td>
+							<td>{{ ucfirst($contact->nombre) }} {{ ucfirst($contact->apellido) }}</td>
 							<td>{{ ucfirst($contact->telefono) }}</td>
 							<td>{{ ucfirst($contact->email) }}</td>
 							<td>{{ ucfirst($contact->direccion) }}</td>
 							<td>
-								<div style="display: flex; flex-direction:row; justify-content: start; gap: 2rem">
+								<div style="">
 									<div style="display: inline">
 										<button class="btn btn-outline-primary btn-rounded" data-bs-toggle="modal"
 											data-bs-target="#modal_update_{{ $contact->id }}"> Editar </button>
@@ -47,16 +49,14 @@
 									<div style="display: inline">
 										<!-- Button trigger modal -->
 										<button class="btn btn-outline-danger btn-rounded" data-bs-toggle="modal"
-											data-bs-target="#modal_destroy_{{ $contact->id }}"> eliminar </button>
+											data-bs-target="#modal_destroy_{{ $contact->id }}"> Eliminar </button>
 										@include('contact_modal_destroy')
 									</div>
 								</div>
 							</td>
 						</tr>
 					@endforeach
-
 				</tbody>
-
 			</table>
 		</div>
 	</div>
