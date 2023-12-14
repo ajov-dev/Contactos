@@ -1,7 +1,7 @@
 @extends('base')
 @section('content')
-<div class="container">
-    <div style="display: flex; flex-direction:row; justify-content:space-between; align-items: center;">
+	<div class="container">
+		<div style="display: flex; flex-direction:row; justify-content:space-between; align-items: center;">
 			<div>
 				<h1>Categorias</h1>
 			</div>
@@ -58,6 +58,14 @@
 			</table>
 		</div>
 	</div>
-
-	<!-- Asegúrate de incluir jQuery en tu proyecto antes de esto -->
+	<nav aria-label="navigation">
+		<ul class="pagination justify-content-center">
+			<li class="page-item">
+				<a class="page-link" href="{{ $categories->previousPageUrl() }}">Anterior</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ $categories->nextPageUrl() }}">Siguiente</a>
+			</li>
+		</ul>
+	</nav>
 @endsection

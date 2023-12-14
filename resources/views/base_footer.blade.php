@@ -1,26 +1,26 @@
 <!-- Footer -->
 <footer class="bg-dark text-center">
-    <!-- Grid container -->
-    <div class="container p-4 ">
-      <!-- Section: Text -->
-      <section class="mb-4 text">
-        <p class="text-light">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-          distinctio earum repellat quaerat voluptatibus placeat nam,
-          commodi optio pariatur est quia magnam eum harum corrupti dicta,
-          aliquam sequi voluptate quas.
-        </p>
-      </section>
-      <!-- Section: Text -->
-    </div>
-    <!-- Grid container -->
+	<!-- Grid container -->
+	<div class="container">
+		<!-- Section: Text -->
+		<section>
+			<p class="text-light">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+				distinctio earum repellat quaerat voluptatibus placeat nam,
+				commodi optio pariatur est quia magnam eum harum corrupti dicta,
+				aliquam sequi voluptate quas.
+			</p>
+		</section>
+		<!-- Section: Text -->
+	</div>
+	<!-- Grid container -->
 
-    <!-- Copyright -->
-    <div class="text-center text-light p-3">
-      © 2020 Copyright:
-      <a href="https://mdbootstrap.com/">MDBootstrap.com</a>
-    </div>
-    <!-- Copyright -->
+	<!-- Copyright -->
+	<div class="text-center text-light">
+		© 2023 Copyright:
+		<a href="#">Alessandro Olivares</a>
+	</div>
+	<!-- Copyright -->
 
-  </footer>
-  <!-- Footer -->
+</footer>
+<!-- Footer -->

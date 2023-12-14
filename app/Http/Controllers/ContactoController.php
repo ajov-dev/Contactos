@@ -13,11 +13,15 @@ class ContactoController extends Controller
 {
     public function index_get()
     {
-        $contacts = Contacto::where('user_id', Auth()->user()->id)->with('categoria')->get();
+        $contacts = Contacto::where('user_id', Auth()->user()->id)
+            ->with('categoria')
+            ->paginate(7);
+
         $categories = Categoria::where('user_id', Auth()->user()->id)->get();
 
         return view('contact_index', ['name' => 'contacts', 'contacts' => $contacts, 'categories' => $categories]);
     }
+
 
     public function create_post(Request $request)
     {

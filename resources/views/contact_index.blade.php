@@ -13,7 +13,7 @@
 				{{-- fin del modal --}}
 			</div>
 		</div>
-		<div class="table">
+		<div class="table-responsive">
 			<table class="table table-striped table-hover table-dark ">
 				<thead>
 					<tr>
@@ -60,4 +60,15 @@
 			</table>
 		</div>
 	</div>
+    <nav aria-label="navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a class="page-link" href="{{ $contacts->previousPageUrl() }}">Anterior</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="{{ $contacts->nextPageUrl() }}">Siguiente</a>
+            </li>
+        </ul>
+    </nav>
+
 @endsection

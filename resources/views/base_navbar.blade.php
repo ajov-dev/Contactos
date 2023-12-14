@@ -1,6 +1,6 @@
 @auth
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="height: 100%">
         <!-- Container wrapper -->
         <div class="container">
 
