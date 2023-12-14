@@ -10,15 +10,15 @@
 					<h3 class="modal-title text-dark" id="modal_destroy_{{ $category->id }}">Eliminar
 						Categoria</h3>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
+						aria-label="Close" onclick="location.reload(true)"></button>
 				</div>
 				<div class="modal-body">
 					<h4 class="text-dark">¿Estas seguro de eliminar la categoria: "{{ $category->nombre }}"?</h4>
 				</div>
 				<div class="modal-footer">
 					<a type="button" class="btn btn-outline-secondary btn-rounded"
-						data-bs-dismiss="modal">Cancelar</a>
-					<button type="submit" class="btn btn-outline-danger btn-rounded">Eliminar definitivamente</button>
+						data-bs-dismiss="modal" onclick="location.reload(true)">Cancelar</a>
+                        <button type="submit" class="btn btn-outline-success btn-rounded">Eliminar definitivamente</button>
 				</div>
 			</form>
 		</div>

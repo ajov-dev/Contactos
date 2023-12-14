@@ -22,23 +22,23 @@
 							id="contact_email" placeholder="Email..." value="{{ ucfirst($contact->email) }}">
 						<input class="form-control form-control-lg mb-2" type="text" name="contact_address"
 							id="contact_address" placeholder="Direccion..." value="{{ ucfirst($contact->direccion) }}">
-						<select class="form-control form-control-lg mb-2" name="contact_category" id="contact_category"
-							onclick="UpdateInputCategory(this)">
-							<option value="{{ $contact->categoria->id }}" selected>
-								{{ ucfirst($contact->categoria->nombre) }}
-							</option>
-							@foreach ($categories as $category)
-								@if ($category->id != $contact->categoria->id)
-									<option value="{{ $category->id }}">
-										{{ ucfirst($category->nombre) }}
-									</option>
-								@endif
-							@endforeach
-							<option value="-1">Otra opción </option>
-							<input class="form-control form-control-lg mb-2" id="contacto_category_update"
-								style="display: none; " placeholder="Ingrese la nueva categoria" type="text"
-								name="contacto_category_update">
-						</select>
+                            <select class="form-control form-control-lg mb-2" name="contact_category" id="contact_category_{{ $contact->id }}"
+                                onclick="UpdateInputCategory(this, {{ $contact->id }})">
+                                <option value="{{ $contact->categoria->id }}" selected>
+                                    {{ ucfirst($contact->categoria->nombre) }}
+                                </option>
+                                @foreach ($categories as $category)
+                                    @if ($category->id != $contact->categoria_id)
+                                        <option value="{{ $category->id }}">
+                                            {{ ucfirst($category->nombre) }}
+                                        </option>
+                                    @endif
+                                @endforeach
+                                <option value="{{ -1 }}">Otra opción </option>
+                                <input class="form-control form-control-lg mb-2" id="contacto_category_update_{{ $contact->id }}"
+                                    style="display: none; " placeholder="Ingrese la nueva categoria" type="text"
+                                    name="contacto_category_update">
+                            </select>
 					</div>
 					<div class="modal-footer">
 						<a type="button" class="btn btn-outline-secondary btn-rounded" data-bs-dismiss="modal"
@@ -50,16 +50,15 @@
 	</div>
 </div>
 <script>
-	function UpdateInputCategory(selectElement) {
-		var input_category = document.getElementById('contacto_category_update');
-		var campoTextoInput = document.getElementById('campoTexto');
+    function UpdateInputCategory(selectElement, contactId) {
+        const input_category = document.getElementById("contacto_category_update_" + contactId);
 
-		if (selectElement.value == -1) {
-			input_category.style.display = 'block';
-			campoTextoInput.setAttribute('required', 'required');
-		} else {
-			input_category.style.display = 'none';
-			campoTextoInput.removeAttribute('required');
-		}
-	}
+        if (selectElement.value != -1) {
+            input_category.style.display = 'none';
+            input_category.removeAttribute('required');
+        } else {
+            input_category.style.display = 'block';
+            input_category.setAttribute('required', 'required');
+        }
+    }
 </script>

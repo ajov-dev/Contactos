@@ -26,6 +26,7 @@ class CategoriaController extends Controller
         $request->nombre = strtolower($request->nombre);
         $validator = Validator::make($request->all(), [
             'nombre' => ['required', 'string', 'max:30','min:2', 'unique:categorias,nombre'],
+            'descripcion' => ['string', 'max:50', 'nullable'],
         ]);
 
         if ($validator->fails()) {
@@ -47,17 +48,19 @@ class CategoriaController extends Controller
     }
     public function update_post(Request $request)
     {
-        $credentials = $request->validate([
-            'nombre' => ['required', 'string', 'max:30'],
+        $request->nombre = strtolower($request->nombre);
+        $credentials = Validator::make($request->all(), [
+            'nombre' => ['required', 'string', 'max:30','min:2', 'unique:categorias,nombre,'.$request->user_id.',id'],
+            'descripcion' => ['string', 'max:50', 'nullable'],
         ]);
-        if (empty($credentials)) {
+        if ($credentials->fails()) {
             return redirect()->back()->with('error', 'No se permiten campos vacios');
         }
         try {
             Categoria::where('id', $request->user_id)
                 ->update([
                     'nombre' => $request->nombre,
-                    'descripcion' => $request->descripcion,
+                    'descripcion' => $request->descripcion ?? null,
                 ]);
             return redirect()->route('category.index.get')->with(['success' => 'Se Actualizó la informacion correctamente']);
         } catch (\Throwable $th) {

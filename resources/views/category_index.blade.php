@@ -31,8 +31,8 @@
 							<th>
 								<div class="w-25 m-auto"><i class="bi bi-people-fill"></i></div>
 							</th>
-							<td>{{ $category->nombre }}</td>
-							<td>{{ $category->descripcion }}</td>
+							<td>{{ Str::ucfirst($category->nombre) }}</td>
+							<td>{{ Str::ucfirst($category->descripcion) }}</td>
 							<td>
 								<div class="d-flex row">
 									<div class="col-4">

@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Contacto;
 use App\Models\Categoria;
-
-
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ContactoController extends Controller
 {
@@ -25,16 +23,16 @@ class ContactoController extends Controller
 
     public function create_post(Request $request)
     {
-        // $request->validate([
-        //     'contact_name' => 'required|string|max:30',
-        //     'contact_lastname' => 'nullstring|max:30',
-        //     'contact_phone' => 'required|string|max:20',
-        //     'contact_email' => 'required|string|max:50|email',
-        //     'contact_address' => 'string|max:50',
-        //     'contact_category' => 'integer|nullable',
-        //     'contacto_category_create' => 'nullable|string|max:20',
-
-        // ]);
+        // Validacion de campos
+        $validator = Validator::make([$request->all()], [
+            'contact_name' => ['required', 'string', 'max:30', 'min:2', 'unique:contactos,nombre,' . Auth()->user()->id . ',user_id'],
+            'contact_lastname' => ['nullable', 'string', 'max:30', 'min:2'],
+            'contact_phone' => ['string', 'string', 'max:30', 'min:7'],
+            'contact_email' => ['required', 'string', 'email', 'max:50', 'unique:contactos,email'],
+            'contact_address' => ['nullable', 'string', 'max:50', 'min:5'],
+            'contact_category' => ['nullable', 'integer', 'exists:categorias,id'],
+            'contacto_category_create' => ['required', 'string', 'max:30', 'min:2', 'unique:categorias,nombre'],
+        ]);
         try {
             $contacto = new Contacto();
             $contacto->user_id = Auth()->user()->id;
