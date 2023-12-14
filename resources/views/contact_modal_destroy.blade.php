@@ -13,7 +13,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h4 class="text-dark">¿Estas seguro de eliminar la categoria: "{{ $contact->nombre }}"?</h4>
+                    <h4 class="text-dark">¿Estas seguro de eliminar la categoria: "{{ ucfirst($contact->nombre . " " . $contact->apellido) }}"?</h4>
                 </div>
                 <div class="modal-footer">
                     <a type="button" class="btn btn-outline-secondary btn-rounded"

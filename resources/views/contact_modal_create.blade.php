@@ -5,20 +5,20 @@
             <form action="{{ route('contact.create.post') }}" method="post">
                 @csrf
                 <div class="modal-header">
-                    <h4 class="modal-title" id="modal_create">Crear Usuario</h4>
+                    <h4 class="modal-title text-dark" id="modal_create">Crear Usuario</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     @csrf
                     <input class="form-control form-control-lg mb-2" required type="text" name="contact_name"
                         id="contact_name" placeholder="Nombre...">
-                    <input class="form-control form-control-lg mb-2" required type="text" name="contact_lastname"
+                    <input class="form-control form-control-lg mb-2" type="text" name="contact_lastname"
                         id="contact_lastname" placeholder="Apellido...">
                     <input class="form-control form-control-lg mb-2" required type="text" name="contact_phone"
                         id="contact_phone" placeholder="Telefono...">
                     <input class="form-control form-control-lg mb-2" required type="email" name="contact_email"
                         id="contact_email" placeholder="Email...">
-                    <input class="form-control form-control-lg mb-2" required type="text" name="contact_address"
+                    <input class="form-control form-control-lg mb-2" type="text" name="contact_address"
                         id="contact_address" placeholder="Direccion...">
                         <select class="form-control form-control-lg mb-2" name="contact_category" id="contact_category"
                             onclick="CreateInputCategory(this)">
@@ -26,7 +26,7 @@
                             @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->nombre }}</option>
                             @endforeach
-                            <option value="-1">Otra opción </option>
+                            <option value="-1">Otra opción</option>
                             <input class="form-control form-control-lg mb-2" id="contacto_category_create"
                                 style="display: none; " placeholder="Ingrese la nueva categoria" type="text"
                                 name="contacto_category_create">

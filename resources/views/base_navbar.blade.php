@@ -20,14 +20,18 @@
                     Opciones
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('category.index.get') }}">Administrar Categorias</a></li>
-
                     <li>
                         <form action="{{ route('signout') }}" method="post">
                             @csrf
                             <button type="submit" class="dropdown-item">Cerrar sesión</button>
                         </form>
                     </li>
+                    @if($name == 'categories')
+                    <li><a class="dropdown-item" href="{{ route('contact.index.get') }}">Administrar Contactos</a></li>
+                    @endif
+                    @if($name == 'contacts')
+                    <li><a class="dropdown-item" href="{{ route('category.index.get') }}">Administrar Categorias</a></li>
+                    @endif
                 </ul>
             </div>
         </div>

@@ -21,6 +21,16 @@ class ContactoController extends Controller
 
     public function create_post(Request $request)
     {
+        // $request->validate([
+        //     'contact_name' => 'required|string|max:30',
+        //     'contact_lastname' => 'nullstring|max:30',
+        //     'contact_phone' => 'required|string|max:20',
+        //     'contact_email' => 'required|string|max:50|email',
+        //     'contact_address' => 'string|max:50',
+        //     'contact_category' => 'integer|nullable',
+        //     'contacto_category_create' => 'nullable|string|max:20',
+
+        // ]);
         try {
             $contacto = new Contacto();
             $contacto->user_id = Auth()->user()->id;
@@ -39,7 +49,8 @@ class ContactoController extends Controller
                 ]);
                 $contacto->categoria_id = $category->id;
             } else {
-                $contacto->categoria_id = $request->contact_category;
+                $contacto->categoria_id = $request->contact_category ?? null;
+
             }
             $contacto->save();
             return redirect()->back()->with('success', 'Genial! Agregaste a ' . $request->contact_name . ' ' . $request->contact_lastname . ' a tus contactos');
