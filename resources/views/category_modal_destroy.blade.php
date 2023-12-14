@@ -18,7 +18,7 @@
 				<div class="modal-footer">
 					<a type="button" class="btn btn-outline-secondary btn-rounded"
 						data-bs-dismiss="modal" onclick="location.reload(true)">Cancelar</a>
-                        <button type="submit" class="btn btn-outline-success btn-rounded">Eliminar definitivamente</button>
+                        <button type="submit" class="btn btn-outline-danger btn-rounded">Eliminar definitivamente</button>
 				</div>
 			</form>
 		</div>

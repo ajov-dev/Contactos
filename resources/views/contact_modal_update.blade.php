@@ -34,9 +34,12 @@
 						<select class="form-control form-control-lg mb-2" name="contact_category"
 							id="contact_category_{{ $contact->id }}"
 							onclick="UpdateInputCategory(this, {{ $contact->id }})">
+							@isset( $contact->categoria_id)
 							<option value="{{ $contact->categoria->id }}" selected>
 								{{ ucfirst($contact->categoria->nombre) }}
 							</option>
+							
+							@endisset
 							@foreach ($categories as $category)
 								@if ($category->id != $contact->categoria_id)
 									<option value="{{ $category->id }}">
