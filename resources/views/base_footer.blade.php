@@ -16,7 +16,7 @@
 	<!-- Grid container -->
 
 	<!-- Copyright -->
-	<div class="text-center text-light">
+	<div class="text-center text-light col">
 		© 2023 Copyright:
 		<a href="#">Alessandro Olivares</a>
 	</div>
