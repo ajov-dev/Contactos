@@ -23,16 +23,6 @@ class ContactoController extends Controller
 
     public function create_post(Request $request)
     {
-        // Validacion de campos
-        $validator = Validator::make([$request->all()], [
-            'contact_name' => ['required', 'string', 'max:30', 'min:2', 'unique:contactos,nombre,' . Auth()->user()->id . ',user_id'],
-            'contact_lastname' => ['nullable', 'string', 'max:30', 'min:2'],
-            'contact_phone' => ['string', 'string', 'max:30', 'min:7'],
-            'contact_email' => ['required', 'string', 'email', 'max:50', 'unique:contactos,email'],
-            'contact_address' => ['nullable', 'string', 'max:50', 'min:5'],
-            'contact_category' => ['nullable', 'integer', 'exists:categorias,id'],
-            'contacto_category_create' => ['required', 'string', 'max:30', 'min:2', 'unique:categorias,nombre'],
-        ]);
         try {
             $contacto = new Contacto();
             $contacto->user_id = Auth()->user()->id;
@@ -57,15 +47,24 @@ class ContactoController extends Controller
             $contacto->save();
             return redirect()->back()->with('success', 'Genial! Agregaste a ' . $request->contact_name . ' ' . $request->contact_lastname . ' a tus contactos');
         } catch (\Throwable $th) {
-            //throw $th;
             return redirect()->back()->with('error', $th->getMessage());
         }
     }
 
     public function update_post(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'contact_name' => 'required|unique:contactos,nombre,' . $request->user_id . ',id|min:5|max:30',
+            'contact_lastname' => 'nullable|min:5|max:30',
+            'contact_phone' => 'required|min:5|max:30',
+            'contact_email' => 'required|min:5|max:30',
+            'contact_address' => 'nullable|min:5|max:30',
+        ]);
 
-        // return dump($request->all());
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', $validator->errors()->first());
+        }
+
         try {
             $contacto = Contacto::find($request->user_id);
             $contacto->nombre = $request->contact_name;
@@ -73,9 +72,6 @@ class ContactoController extends Controller
             $contacto->telefono = $request->contact_phone;
             $contacto->email = $request->contact_email;
             $contacto->direccion = $request->contact_address;
-
-
-
             if ($request->contact_category == -1 && $request->contacto_category_update != '') {
                 if ($this->validarExistenciaCategory($request->contacto_category_update)) {
                     return redirect()->back()->with('error', 'La categoria ya existe');
