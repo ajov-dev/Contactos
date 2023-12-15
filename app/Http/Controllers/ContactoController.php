@@ -23,6 +23,17 @@ class ContactoController extends Controller
 
     public function create_post(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'contact_name' => 'required|unique:contactos,nombre,' . $request->user_id . ',id|min:5|max:30',
+            'contact_lastname' => 'nullable|min:5|max:30',
+            'contact_phone' => 'required|min:5|max:30',
+            'contact_email' => 'required|min:5|max:30',
+            'contact_address' => 'nullable|min:5|max:30',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', $validator->errors()->first());
+        }
         try {
             $contacto = new Contacto();
             $contacto->user_id = Auth()->user()->id;
