@@ -13,7 +13,7 @@ class ContactoController extends Controller
     {
         $contacts = Contacto::where('user_id', Auth()->user()->id)
             ->with('categoria')
-            ->paginate(7);
+            ->paginate(5);
 
         $categories = Categoria::where('user_id', Auth()->user()->id)->get();
 
